@@ -4,10 +4,10 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.yangx.common.model.User;
 import com.yangx.common.service.UserService;
-import com.yangx.simplerpc.model.RpcRequest;
-import com.yangx.simplerpc.model.RpcResponse;
-import com.yangx.simplerpc.serializer.JdkSerializer;
-import com.yangx.simplerpc.serializer.Serializer;
+import com.yangx.rpc.model.RpcRequest;
+import com.yangx.rpc.model.RpcResponse;
+import com.yangx.rpc.serializer.JdkSerializer;
+import com.yangx.rpc.serializer.Serializer;
 
 import java.io.IOException;
 
