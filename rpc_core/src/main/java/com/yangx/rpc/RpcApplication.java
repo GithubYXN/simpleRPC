@@ -1,7 +1,10 @@
 package com.yangx.rpc;
 
+import com.yangx.rpc.config.RegistryConfig;
 import com.yangx.rpc.config.RpcConfig;
 import com.yangx.rpc.constant.RpcConstant;
+import com.yangx.rpc.registry.Registry;
+import com.yangx.rpc.registry.RegistryFactory;
 import com.yangx.rpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,6 +23,15 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig) {
         rpcConfig = newRpcConfig;
         log.info("rpc init, config: {}", newRpcConfig.toString());
+
+        //初始化注册中心
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config: {}", registryConfig);
+
+        //创建并注册ShutdownHook，JVM退出时执行操作
+        Runtime.getRuntime().addShutdownHook(new Thread(registry::destroy));
     }
 
     /**

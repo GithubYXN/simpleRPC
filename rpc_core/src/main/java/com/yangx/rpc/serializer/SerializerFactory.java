@@ -29,6 +29,9 @@ public class SerializerFactory {
 
     /**
      * 获取实例
+     *
+     * @param key
+     * @return
      */
     public static Serializer getInstance(String key) {
 
