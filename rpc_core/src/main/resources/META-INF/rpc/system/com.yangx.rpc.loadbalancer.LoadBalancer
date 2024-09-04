@@ -1,0 +1,3 @@
+roundRobin=com.yangx.rpc.loadbalancer.RoundRobinLoadBalancer
+random=com.yangx.rpc.loadbalancer.RandomLoadBalancer
+consistentHash=com.yangx.rpc.loadbalancer.ConsistentHashLoadBalancer
