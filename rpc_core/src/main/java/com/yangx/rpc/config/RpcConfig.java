@@ -1,5 +1,7 @@
 package com.yangx.rpc.config;
 
+import com.yangx.rpc.fault.retry.RetryStrategyKeys;
+import com.yangx.rpc.fault.tolerant.TolerantStrategyKeys;
 import com.yangx.rpc.loadbalancer.LoadBalancerKeys;
 import com.yangx.rpc.serializer.SerializerKeys;
 import lombok.Data;
@@ -33,7 +35,7 @@ public class RpcConfig {
     /**
      * 服务器端口号
      */
-    private Integer serverPort = 8088;
+    private Integer serverPort = 8888;
 
     /**
      * 序列化器
@@ -49,4 +51,14 @@ public class RpcConfig {
      * 负载均衡器
      */
     private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    /**
+     * 重试策略
+     */
+    public String retryStrategy = RetryStrategyKeys.NO;
+
+    /**
+     * 容错策略
+     */
+    public String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 }

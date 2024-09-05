@@ -1,0 +1,2 @@
+no=com.yangx.rpc.fault.retry.NoRetryStrategy
+fixedInterval=com.yangx.rpc.fault.retry.FixedIntervalRetryStrategy

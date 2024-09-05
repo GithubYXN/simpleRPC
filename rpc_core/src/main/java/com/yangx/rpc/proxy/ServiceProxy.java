@@ -7,6 +7,10 @@ import cn.hutool.http.HttpResponse;
 import com.yangx.rpc.RpcApplication;
 import com.yangx.rpc.config.RpcConfig;
 import com.yangx.rpc.constant.RpcConstant;
+import com.yangx.rpc.fault.retry.RetryStrategy;
+import com.yangx.rpc.fault.retry.RetryStrategyFactory;
+import com.yangx.rpc.fault.tolerant.TolerantStrategy;
+import com.yangx.rpc.fault.tolerant.TolerantStrategyFactory;
 import com.yangx.rpc.loadbalancer.LoadBalancer;
 import com.yangx.rpc.loadbalancer.LoadBalancerFactory;
 import com.yangx.rpc.model.RpcRequest;
@@ -77,7 +81,18 @@ public class ServiceProxy implements InvocationHandler {
         System.out.println("本次请求的端口是: " + selectedServiceMetaInfo.getServicePort());
 
         //发送TCP请求
-        RpcResponse rpcResponse = VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo);
+        RpcResponse rpcResponse;
+
+        try {
+            RetryStrategy retryStrategy = RetryStrategyFactory.getInstance(rpcConfig.getRetryStrategy());
+            rpcResponse = retryStrategy.doRetry(() ->
+                    VertxTcpClient.doRequest(rpcRequest, selectedServiceMetaInfo)
+            );
+        } catch (Exception e) {
+            //容错机制
+            TolerantStrategy tolerantStrategy = TolerantStrategyFactory.getInstance(rpcConfig.getTolerantStrategy());
+            rpcResponse = tolerantStrategy.doTolerant(null, e);
+        }
         return rpcResponse.getData();
 
 //        //发送TCP请求
