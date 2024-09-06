@@ -15,6 +15,8 @@
         <module>simple_rpc</module>
         <module>rpc_core</module>
         <module>rpc_spring_boot_starter</module>
+        <module>springboot_consumer</module>
+        <module>springboot_provider</module>
     </modules>
 
     <properties>

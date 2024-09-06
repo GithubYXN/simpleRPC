@@ -15,6 +15,10 @@
     <file url="file://$PROJECT_DIR$/rpc_springboot_starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/simple_rpc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/simple_rpc/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot_consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot_consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot_provider/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot_provider/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
